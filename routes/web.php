@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\HomeController;
@@ -34,7 +35,6 @@ Route::resource('register', RegisterController::class);
 
 
 Route::middleware('auth')->group(function () {
-
     Route::get('/profile', function () {
         return view('profile.index');
     })->name('profile');
@@ -44,7 +44,10 @@ Route::middleware('auth')->group(function () {
     })->name('edit');
 
     Route::post('/profile', [UserController::class, 'edit'])->name('profile.edit');
+
     Route::resource('questions', QuestionController::class);
+    Route::resource('questions.answers', AnswerController::class);
+
     Route::get('home', [HomeController::class, 'index'])->name('home.index');
 
     Route::get('categories', [CategoriesController::class, 'index'])->name('categories.index');
