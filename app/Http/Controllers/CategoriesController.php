@@ -31,7 +31,7 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'
+            'name' => 'required|unique:categories|max:255',
         ]);
 
         $cat = Category::create([
