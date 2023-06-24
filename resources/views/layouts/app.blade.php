@@ -30,7 +30,7 @@
             </div>
             <ul class="navbar-menu">
                 <li class="navbar-item">
-                    <a class="navbar-link" href="#">Home</a>
+                    <a class="navbar-link" href="{{route('home.index')}}">Home</a>
                 </li>
                 <li class="navbar-item">
                     <a class="navbar-link" href="#">Pertanyaan</a>
@@ -49,7 +49,7 @@
                         <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
                         <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Change Password</a>
                         <div class="dropdown-divider"></div>
-                        <form action="#" method="post">
+                        <form action="{{ route('actionlogout')}}" method="post">
                             @csrf
                             <button style="margin-left: 45px;" type="submit" class="btn btn-dark">Logout</button>
                         </form>
