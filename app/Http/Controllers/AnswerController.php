@@ -42,7 +42,19 @@ class AnswerController extends Controller
     {
         $request->validate([
             'content' => 'required',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:20480',
         ]);
+
+        if ($request->hasFile('gambar')) {
+            if ($answer->gambar) {
+                Storage::disk('public')->delete($answer->gambar);
+            }
+
+            $filename = uniqid('answer-') . '-' . $request->gambar->getClientOriginalName();
+            $request->gambar->storeAs('public/foto', $filename);
+            $answer->gambar = '/foto/' . $filename;
+        }
+
         $answer->content = $request->content;
         $answer->save();
 
