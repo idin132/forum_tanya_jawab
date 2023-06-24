@@ -28,8 +28,6 @@ class QuestionController extends Controller
         return view('questions.index', compact('questions', 'categories', 'selectedCategory'));
     }
 
-
-
     public function create()
     {
         $categories = Category::all();
@@ -43,18 +41,21 @@ class QuestionController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
+            'category' => 'required|exists:categories,id',
+            'title' => 'required|min:3|max:255',
+            'content' => 'required|min:1',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10000',
         ]);
 
         $question = new Question;
         $question->user_id = $request->user()->id;
-        $question->category_id = $request->category;
-        $question->title = $request->title;
-        $question->content = $request->content;
+        $question->category_id = $data['category'];
+        $question->title = $data['title'];
+        $question->content = $data['content'];
 
-        if ($request->hasFile('gambar')) {
-            $path = $request->file('gambar')->store('public/foto');
+        if (isset($data['gambar'])) {
+            $path = $data['gambar']->store('public/foto');
             $question->gambar = Storage::url($path); // Menggunakan Storage::url() untuk mendapatkan tautan file gambar
         }
 
@@ -62,8 +63,6 @@ class QuestionController extends Controller
 
         return redirect()->route('questions.index')->with('success', 'Question created successfully');
     }
-
-
 
     public function edit(Question $question)
     {
@@ -73,9 +72,15 @@ class QuestionController extends Controller
 
     public function update(Request $request, Question $question)
     {
-        $question->category_id = $request->category;
-        $question->title = $request->title;
-        $question->content = $request->content;
+        $data = $request->validate([
+            'category' => 'required|exists:categories,id',
+            'title' => 'required|min:3|max:255',
+            'content' => 'required|min:1',
+        ]);
+
+        $question->category_id = $data['category'];
+        $question->title = $data['title'];
+        $question->content = $data['content'];
         $question->save();
 
         return redirect()->route('questions.index')->with('success', 'Question updated successfully');

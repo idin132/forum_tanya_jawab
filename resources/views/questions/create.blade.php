@@ -8,7 +8,7 @@
         @csrf
         <div class="form-group">
             <label for="category">Category:</label>
-            <select class="form-control js-example-basic-single" name="category" id="category">
+            <select class="form-control js-example-basic-single" name="category" id="category" required>
                 @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
@@ -16,11 +16,11 @@
         </div>
         <div class="form-group">
             <label for="title">Title:</label>
-            <input type="text" class="form-control" name="title" id="title">
+            <input type="text" class="form-control" name="title" id="title" required>
         </div>
         <div class="form-group">
             <label for="content">Content:</label>
-            <textarea class="form-control" name="content" id="content" rows="5"></textarea>
+            <textarea class="form-control" name="content" id="content" rows="5" required></textarea>
         </div>
         <div class="form-group">
             <label for="image">Gambar</label>
