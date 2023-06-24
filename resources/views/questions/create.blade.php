@@ -8,7 +8,7 @@
         @csrf
         <div class="form-group">
             <label for="category">Category:</label>
-            <select class="form-control" name="category" id="category">
+            <select class="form-control js-example-basic-single" name="category" id="category">
                 @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
@@ -30,4 +30,10 @@
         <a href="{{ route('questions.index')}}" type="button" class="btn btn-primary">Kembali</a>
     </form>
 </div>
+@endsection
+@section('scripts')
+    @parent
+    <script>$(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });</script>
 @endsection
