@@ -21,11 +21,6 @@
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
 </head>
 
-</head>
-
-<meta name="csrf-token" content="{{ csrf_token() }}">
-</head>
-
 <body>
     <header>
 
@@ -41,7 +36,7 @@
                     <a class="navbar-link" href="#">Pertanyaan</a>
                 </li>
                 <li class="navbar-item">
-                    <a class="navbar-link" href="#">Kategori</a>
+                    <a class="navbar-link" href="{{ route('categories.index')}}">Kategori</a>
                 </li>
             </ul>
             <ul>

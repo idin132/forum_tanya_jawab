@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('categories', [CategoriesController::class, 'index'])->name('categories.index');
+Route::resource('cat', CategoriesController::class);
+
+Route::middleware('auth')->group(function () {
+
 });
