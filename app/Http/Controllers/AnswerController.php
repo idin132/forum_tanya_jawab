@@ -23,8 +23,9 @@ class AnswerController extends Controller
         $answer->content = $data['content'];
 
         if ($request->hasFile('gambar')) {
-            $path = $data['gambar']->storeAs('public/foto', uniqid('answer-') . '-' . $data['gambar']->getClientOriginalName());
-            $answer->gambar = Storage::url($path);
+            $filename = uniqid('answer-') . '-' . $data['gambar']->getClientOriginalName();
+            $data['gambar']->storeAs('public/foto', $filename);
+            $answer->gambar = '/foto/' . $filename;
         }
 
         $answer->save();
