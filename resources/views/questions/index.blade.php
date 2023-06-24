@@ -19,7 +19,7 @@
         <form action="{{ route('questions.index') }}" method="GET" class="mb-4">
             <div class="form-group">
                 <label for="category">Filter berdasarkan kategori:</label>
-                <select class="form-control" name="category" id="category">
+                <select class="form-control js-example-basic-single" name="category" id="category">
                     <option value="">Semua Kategori</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}" {{ $selectedCategory == $category->id ? 'selected' : '' }}>
@@ -61,7 +61,7 @@
                             <div>
                                 <a href="{{ route('questions.edit', $question->id) }}"
                                     class="btn btn-secondary mr-2">Edit</a>
-                                <form action="{{ route('questions.destroy', $question->id) }}" method="POST"
+                                <form id="delete" action="{{ route('questions.destroy', $question->id) }}" method="POST"
                                     class="d-inline">
                                     @csrf
                                     @method('DELETE')
@@ -74,4 +74,30 @@
             </div>
         @endforeach
     </div>
+@endsection
+
+@section('scripts')
+    @parent
+
+    <script>
+        document.getElementById('delete').addEventListener('submit', function(e) {
+            e.preventDefault(); // Menghentikan submit form
+
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: 'Apakah Anda yakin ingin menghapus pertanyaan ini?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit(); // Submit form jika dikonfirmasi
+                }
+            });
+        });
+    </script>
+    <script>$(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });</script>
 @endsection
