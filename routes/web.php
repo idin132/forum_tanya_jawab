@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\QuestionController;
+
 
 
 /*
@@ -42,8 +44,7 @@ Route::middleware('auth')->group(function () {
     })->name('edit');
 
     Route::post('/profile', [UserController::class, 'edit'])->name('profile.edit');
-
-
+    Route::resource('questions', QuestionController::class);
     Route::get('home', [HomeController::class, 'index'])->name('home.index');
 
     Route::get('categories', [CategoriesController::class, 'index'])->name('categories.index');

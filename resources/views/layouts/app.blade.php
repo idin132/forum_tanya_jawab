@@ -41,7 +41,7 @@
                     <a class="navbar-link" href="{{route('home.index')}}">Home</a>
                 </li>
                 <li class="navbar-item">
-                    <a class="navbar-link" href="#">Pertanyaan</a>
+                    <a class="navbar-link" href="{{route('questions.index')}}">Pertanyaan</a>
                 </li>
                 <li class="navbar-item">
                     <a class="navbar-link" href="{{ route('categories.index')}}">Kategori</a>
