@@ -19,6 +19,15 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+
+    <!-- sweetalert -->
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
+
+
 </head>
 
 <body>
@@ -74,10 +83,12 @@
 
     </footer>
 
-
+    @yield('scripts')
     <script src="{{ asset('js/app.js') }}"></script>
 
     @stack('scripts')
+
+
 </body>
 
 </html>
