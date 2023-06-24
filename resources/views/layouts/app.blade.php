@@ -46,7 +46,7 @@
                         <i class="fa fa-user"></i>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
+                        <a href="{{ route('profile') }}" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
                         <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Change Password</a>
                         <div class="dropdown-divider"></div>
                         <form action="{{ route('actionlogout')}}" method="post">

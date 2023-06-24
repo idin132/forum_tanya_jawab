@@ -5,6 +5,8 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +32,17 @@ Route::resource('register', RegisterController::class);
 
 
 Route::middleware('auth')->group(function () {
+
+    Route::get('/profile', function () {
+        return view('profile.index');
+    })->name('profile');
+
+    Route::get('edit', function () {
+        return view('profile.edit');
+    })->name('edit');
+
+    Route::post('/profile', [UserController::class, 'edit'])->name('profile.edit');
+
 
     Route::get('home', [HomeController::class, 'index'])->name('home.index');
 
