@@ -34,7 +34,7 @@
                 @if ($answer->gambar == null)
                 -
                 @else
-                <img style="width: 100px; margin-bottom:20px; justify-content:end;" src="{{ asset($answer->gambar) }}" alt="Gambar">
+                <img style="width: 100px; margin-bottom:20px; justify-content:end;" src="{{ asset('storage'.$answer->gambar) }}" alt="Gambar">
                 @endif
             </div>
         </div>
