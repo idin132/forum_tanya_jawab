@@ -58,7 +58,7 @@
     <form action="{{ route('questions.answers.store', $question->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <textarea class="form-control" name="content" id="content" rows="5" required></textarea>
+            <textarea class="form-control" name="content" id="content" rows="5" required>{{ old('content') }}</textarea>
         </div>
         <div class="form-group">
             <label for="image">Gambar</label>

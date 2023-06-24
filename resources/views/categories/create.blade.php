@@ -15,7 +15,7 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <label for="name">{{ __('Nama Kategori') }}</label>
-                                        <input type="text" class="form-control" name="name" required>
+                                        <input type="text" class="form-control" name="name" value="{{ old('name') }}" required>
                                     </div>
                                 </div>
                                 <br>
