@@ -22,7 +22,7 @@ class AnswerController extends Controller
         $answer->question_id = $question->id;
         $answer->content = $data['content'];
 
-        if ($request->hasFile('gambar')) {
+        if (isset($data['gambar'])) {
             $filename = uniqid('answer-') . '-' . $data['gambar']->getClientOriginalName();
             $data['gambar']->storeAs('public/foto', $filename);
             $answer->gambar = '/foto/' . $filename;
@@ -49,7 +49,7 @@ class AnswerController extends Controller
             return redirect()->back()->with('error', 'You are not authorized to edit this answer');
         }
 
-        if ($request->hasFile('gambar')) {
+        if (isset($data['gambar'])) {
             if ($answer->gambar) {
                 Storage::disk('public')->delete($answer->gambar);
             }
