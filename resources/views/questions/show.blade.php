@@ -39,15 +39,15 @@
             </div>
         </div>
         @if ($answer->user_id == Auth::user()->id)
-            <hr>
-            <div>
-                <a href="{{ route('questions.answers.edit', [$question->id, $answer->id]) }}" class="btn btn-primary btn-sm">Edit Jawaban</a>
-                <form action="{{ route('questions.answers.destroy', [$question->id, $answer->id]) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" onclick="return confirm('Delete this answer?')" class="btn btn-danger btn-sm">Hapus Jawaban</button>
-                </form>
-            </div>
+        <hr>
+        <div class="d-flex">
+            <a href="{{ route('questions.answers.edit', [$question->id, $answer->id]) }}" class="btn btn-primary btn-sm">Edit Jawaban</a>
+            <form action="{{ route('questions.answers.destroy', [$question->id, $answer->id]) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" onclick="return confirm('Delete this answer?')" class="btn btn-danger btn-sm">Hapus Jawaban</button>
+            </form>
+        </div>
         @endif
     </div>
     @endforeach
