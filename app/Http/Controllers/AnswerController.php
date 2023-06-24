@@ -45,6 +45,10 @@ class AnswerController extends Controller
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:20480',
         ]);
 
+        if ($answer->user_id != Auth::user()->id) {
+            return redirect()->back()->with('error', 'You are not authorized to edit this answer');
+        }
+
         if ($request->hasFile('gambar')) {
             if ($answer->gambar) {
                 Storage::disk('public')->delete($answer->gambar);
